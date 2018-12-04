@@ -89,10 +89,11 @@ As long as the container is running, the documentation is available at
 
 ## Customizing
 
-Several parameters can be changed via environment variables, for example
+Several parameters can be changed via environment variables, for example we can
+change build to ``build/docs/api`` dir as follows
 
 ```console
-user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm -e SAMI_BUILD_DIR=/tmp/build korowai/sami
+user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm -e SAMI_BUILD_DIR=build/docs/api korowai/sami
 ```
 
 ## Details
