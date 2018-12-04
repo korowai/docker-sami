@@ -13,18 +13,23 @@ cat <<-EOH
 EOH
 }
 
+substitute() {
+  sed -e "s:%%DOCKER_FROM_TAG%%:${dockerFromTag}:g" \
+      -e "s:%%VERSION%%:${projectVersion}:g"
+}
+
+projectVersion=`cat VERSION`;
+
 for version in $versions; do
   for os in $oses; do
     targetDir="$version/$os";
     [ -d  "$targetDir" ] || mkdir -p "$targetDir";
     targetFile="$targetDir/Dockerfile";
     dockerFromTag="${version}-${os}";
-    ( generated_warning ; cat "Dockerfile.in") | sed \
-      -e "s:%%DOCKER_FROM_TAG%%:${dockerFromTag}:g" \
-    > "${targetFile}";
+    ( generated_warning ; cat "Dockerfile.in" ) |  substitute > "$targetDir/Dockerfile";
+    [ -d "$targetDir/hooks" ] || mkdir -p "$targetDir/hooks";
+    cat "hooks/build.in" | substitute > "$targetDir/hooks/build"
     rm -rf "$targetDir/bin" && cp -r bin "$targetDir/";
     rm -rf "$targetDir/etc" && cp -r etc "$targetDir/";
-    rm -rf "$targetDir/hooks" && cp -r hooks "$targetDir";
-    cp VERSION "$targetDir/"
   done
 done
