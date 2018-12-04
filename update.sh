@@ -24,5 +24,7 @@ for version in $versions; do
     > "${targetFile}";
     rm -rf "$targetDir/bin" && cp -r bin "$targetDir/";
     rm -rf "$targetDir/etc" && cp -r etc "$targetDir/";
+    rm -rf "$targetDir/hooks" && cp -r hooks "$targetDir";
+    cp VERSION "$targetDir/"
   done
 done
