@@ -6,6 +6,10 @@ documentation for [Korowai](https://github.com/korowai/korowai/) and
 [Korowai Framework](https://github.com/korowai/framework/) out of the
 box. It may be easily adjusted to support other projects.
 
+  - [![](https://images.microbadger.com/badges/version/korowai/sami.svg)](https://microbadger.com/images/korowai/sami "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/korowai/sami.svg)](https://microbadger.com/images/korowai/sami "Get your own image badge on microbadger.com")
+  - [![](https://images.microbadger.com/badges/version/korowai/sami:7.2-alpine.svg)](https://microbadger.com/images/korowai/sami:7.2-alpine "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/korowai/sami:7.2-alpine.svg)](https://microbadger.com/images/korowai/sami:7.2-alpine "Get your own image badge on microbadger.com")
+  - [![](https://images.microbadger.com/badges/version/korowai/sami:7.1-alpine.svg)](https://microbadger.com/images/korowai/sami:7.1-alpine "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/korowai/sami:7.1-alpine.svg)](https://microbadger.com/images/korowai/sami:7.1-alpine "Get your own image badge on microbadger.com")
+
 ## Features
 
 With this container you can:
