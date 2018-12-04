@@ -15,14 +15,13 @@ With this container you can:
   - build documentation continuously (rebuilding when sources change),
   - build documentation continuously and serve it at the same time.
 
-The default behavior is to build continuously and serve at the same
-time.
+The default behavior is to build continuously and serve at the same time.
 
 ## Quick example
 
-Assume we have the following file hierarchy (the essential here is
-assumption that php source files are found under `src`, also we expect
-the documentation to be written-out somewhere under `docs`)
+Assume we have the following file hierarchy (the essential here is assumption
+that php source files are found under `src`, also we expect the documentation
+to be written-out somewhere under `docs`)
 
 ```console
 user@pc:$ tree .
@@ -35,8 +34,7 @@ user@pc:$ tree .
 
 ### Running with docker
 
-Run it as
-follows
+Run it as follows
 
 ```console
 user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm korowai/sami
@@ -44,8 +42,7 @@ user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm korowai/sa
 
 ### Running with docker-compose
 
-In the top level directory create `docker-compose.yml` containing the
-following
+In the top level directory create `docker-compose.yml` containing the following
 
 ```yaml
 version: '3'
@@ -68,8 +65,7 @@ user@pc:$ docker-compose up sami
 
 ### Results
 
-Whatever method you chose to run the container, you shall see two new
-directories
+Whatever method you chose to run the container, you shall see two new directories
 
 ```console
 user@pc:$ ls -d docs/*
@@ -89,8 +85,7 @@ As long as the container is running, the documentation is available at
 
 ## Customizing
 
-Several parameters can be changed via environment variables, for
-example
+Several parameters can be changed via environment variables, for example
 
 ```console
 user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm -e SAMI_BUILD_DIR=/tmp/build korowai/sami
@@ -100,8 +95,7 @@ user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm -e SAMI_BU
 
 ### Volume mount points exposed
 
-  - `/home/sami/project` - bind top level directory of your project
-    here.
+  - `/home/sami/project` - bind top level directory of your project here.
 
 ### Working directory
 
@@ -109,9 +103,9 @@ user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm -e SAMI_BU
 
 ### User running the commands
 
-Commands are executed within container by container's internal user
-called `sami`. By default it has `UID=1000` and `GID=1000`, thus all the
-generated files will have owner with `UID=1000` and `GID=1000`.
+Commands are executed within container by container's internal user called
+`sami`. By default it has `UID=1000` and `GID=1000`, thus all the generated
+files will have owner with `UID=1000` and `GID=1000`.
 
 The container may be rebuilt with custom UID and GID by setting build
 arguments `SAMI_UID` and `SAMI_GID`.
@@ -138,16 +132,14 @@ arguments `SAMI_UID` and `SAMI_GID`.
 
 ### Build arguments & environment variables
 
-The container defines several build arguments which are copied to
-corresponding environment variables within the running container. All
-the arguments/variables have names starting with `SAMI_` prefix. All the
-`sami-*` scripts, and the configuration file `sami.conf.php` respect
-these variables, so the easiest way to adjust the container to your
-needs is to set environment variables (`-e` flag to
-[docker](https://docker.com/)). There are three exceptions currently --
-`SAMI_UID`, `SAMI_GID` and `SAMI_PORT` must be defined at build time, so
-they may only be changed via docker's build
-arguments.
+The container defines several build arguments which are copied to corresponding
+environment variables within the running container. All the arguments/variables
+have names starting with `SAMI_` prefix. All the `sami-*` scripts, and the
+configuration file `sami.conf.php` respect these variables, so the easiest way
+to adjust the container to your needs is to set environment variables (`-e`
+flag to [docker](https://docker.com/)). There are three exceptions currently --
+`SAMI_UID`, `SAMI_GID` and `SAMI_PORT` must be defined at build time, so they
+may only be changed via docker's build arguments.
 
 | Argument             | Default Value            | Description                                            |
 | -------------------- | ------------------------ | ------------------------------------------------------ |
@@ -171,21 +163,20 @@ arguments.
 
 Copyright (c) 2018 by Paweł Tomulik <ptomulik@meil.pw.edu.pl>
 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
