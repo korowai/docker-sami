@@ -7,6 +7,9 @@
 
 set -e
 
-rm -f "/tmp/sami-built-once"
+. "`dirname $0`/sami-env"
 
-exec "$@"
+uid=`id -u`
+if [ ! -f "/tmp/sami-built-once" ]; then
+  build && touch "/tmp/sami-built-once"
+fi

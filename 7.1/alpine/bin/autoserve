@@ -7,6 +7,9 @@
 
 set -e
 
-rm -f "/tmp/sami-built-once"
+build_once
 
-exec "$@"
+serve &
+autobuild &
+
+wait

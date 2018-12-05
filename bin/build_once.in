@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+@GENERATED_WARNING@
+
+set -e
+
+. "`dirname $0`/sami-env"
+
+uid=`id -u`
+if [ ! -f "/tmp/sami-built-once" ]; then
+  build && touch "/tmp/sami-built-once"
+fi

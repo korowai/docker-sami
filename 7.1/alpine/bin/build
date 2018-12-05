@@ -7,6 +7,9 @@
 
 set -e
 
-rm -f "/tmp/sami-built-once"
+. "`dirname $0`/sami-env"
 
-exec "$@"
+(
+  flock -x 200
+  sami update $SAMI_FLAGS "$SAMI_CONFIG"
+) 200>"$SAMI_BUILD_LOCK"

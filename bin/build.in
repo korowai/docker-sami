@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+@GENERATED_WARNING@
+
+set -e
+
+. "`dirname $0`/sami-env"
+
+(
+  flock -x 200
+  sami update $SAMI_FLAGS "$SAMI_CONFIG"
+) 200>"$SAMI_BUILD_LOCK"

@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-set -e
-
-here=`dirname "$0"`
-
-. $here/sami-defaults
-
-sami update -v --force "$SAMI_CONFIG"

@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 
+#############################################################################
+# NOTE: FILE GENERATED AUTOMATICALLY, DO NOT EDIT!!!
+#############################################################################
+
+
 set -e
 
-sami-build
+rm -f "/tmp/sami-built-once"
 
 exec "$@"

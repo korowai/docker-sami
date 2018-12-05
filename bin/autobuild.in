@@ -1,17 +1,19 @@
 #!/usr/bin/env sh
 
+@GENERATED_WARNING@
+
 set -e
 
-here=`dirname "$0"`
-
-. $here/sami-defaults
+. "`dirname $0`/sami-env"
 
 EVENTS="-e modify -e move -e move_self -e create -e delete"
 FORMAT="%w%f"
 
+build_once
+
 inotifywait -m -q $EVENTS --format "$FORMAT" -r "$SAMI_SOURCE_DIR" | \
 while read F; do
   if echo $F | grep -qe "$SAMI_SOURCE_REGEX"; then
-    sami-build
+    build
   fi
 done

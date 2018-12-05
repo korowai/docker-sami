@@ -120,15 +120,15 @@ arguments `SAMI_UID` and `SAMI_GID`.
 #### In `/usr/local/bin`
 
   - scripts which may be used as container's command:
-      - `sami-autobuild` - builds documentation continuously (watches
+      - `autobuild` - builds documentation continuously (watches
         source directory for changes),
-      - `sami-autoserve` - builds documentation continuously and runs
+      - `autoserve` - builds documentation continuously and runs
         http server,
-      - `sami-build` - builds documentation once and exits,
-      - `sami-serve` - builds source once and starts http server,
+      - `build` - builds documentation once and exits,
+      - `serve` - builds source once and starts http server,
   - other files
-      - `sami-defaults` - initializes `SAMI_xxx` variables (default
-        values),
+      - `sami-defaults` - sets `DEFAULT_SAMI_xxx` variables (default
+      - `sami-env` - initializes `SAMI_xxx` variables,
       - `sami-entrypoint` - provides an entry point for docker.
 
 #### In `/home/sami`
@@ -155,8 +155,10 @@ may only be changed via docker's build arguments.
 | SAMI\_SOURCE\_DIR    | src                      | Top-level directory with the PHP source files.         |
 | SAMI\_BUILD\_DIR     | docs/build/html/api      | Where to output the generated documentation.           |
 | SAMI\_CACHE\_DIR     | docs/cache/html/api      | Where to write cache files.                            |
+| SAMI\_FLAGS          | -v --force               | Commandline flags passed to sami.                      |
 | SAMI\_SERVER\_PORT   | 8001                     | Port numer (within container) for the http server.     |
 | SAMI\_SOURCE\_REGEX  | `\.\(php\\|txt\\|rst\)$` | Regular expression for source files' discovery.        |
+| SAMI\_THEME          | default                  | Sami theme.                                            |
 
 ### Software included
 

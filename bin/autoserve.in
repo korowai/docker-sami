@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+@GENERATED_WARNING@
+
+set -e
+
+build_once
+
+serve &
+autobuild &
+
+wait

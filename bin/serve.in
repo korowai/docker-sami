@@ -1,10 +1,12 @@
 #!/usr/bin/env sh
 
+@GENERATED_WARNING@
+
 set -e
 
-here=`dirname "$0"`;
+. "`dirname $0`/sami-env"
 
-. $here/sami-defaults
+build_once
 
 echo "Starting API doc server in $SAMI_BUILD_DIR."
 echo "Serving documentation at http://localhost:${SAMI_SERVER_PORT}."

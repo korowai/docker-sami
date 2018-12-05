@@ -1,20 +1,23 @@
-#
-# NOTE: FILE GENERATED VIA "update.sh"
-#
-# PLEASE DO NOT EDIT IT DIRECTLY
-#
+#############################################################################
+# NOTE: FILE GENERATED AUTOMATICALLY, DO NOT EDIT!!!
+#############################################################################
+
+
 FROM php:7.1-alpine
 
 MAINTAINER Paweł Tomulik <ptomulik@meil.pw.edu.pl>
 
 ARG SAMI_UID=1000
 ARG SAMI_GID=1000
-ARG SAMI_CONFIG
-ARG SAMI_PROJECT_TITLE
-ARG SAMI_SOURCE_DIR
-ARG SAMI_BUILD_DIR
-ARG SAMI_CACHE_DIR
+ARG SAMI_CONFIG='/home/sami/sami.conf.php'
+ARG SAMI_PROJECT_TITLE='API Documentation'
+ARG SAMI_SOURCE_DIR='src'
+ARG SAMI_BUILD_DIR='docs/build/html/api'
+ARG SAMI_CACHE_DIR='docs/cache/html/api'
+ARG SAMI_FLAGS='-v --force'
 ARG SAMI_SERVER_PORT=8001
+ARG SAMI_SOURCE_REGEX='\.\(php\|txt\|rst\)$'
+ARG SAMI_THEME='default'
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -37,7 +40,10 @@ ENV SAMI_UID=$SAMI_UID \
     SAMI_SOURCE_DIR=$SAMI_SOURCE_DIR \
     SAMI_BUILD_DIR=$SAMI_BUILD_DIR \
     SAMI_CACHE_DIR=$SAMI_CACHE_DIR \
-    SAMI_SERVER_PORT=$SAMI_SERVER_PORT
+    SAMI_FLAGS=$SAMI_FLAGS \
+    SAMI_SERVER_PORT=$SAMI_SERVER_PORT \
+    SAMI_SOURCE_REGEX=$SAMI_SOURCE_REGEX \
+    SAMI_THEME=$SAMI_THEME
 
 RUN set -xe && \
   apk add --no-cache --update inotify-tools git && \
@@ -56,7 +62,7 @@ COPY etc/sami.conf.php /home/sami/
 WORKDIR /home/sami/project
 
 ENTRYPOINT [ "sami-entrypoint" ]
-CMD [ "sami-autoserve" ]
+CMD [ "autoserve" ]
 
 EXPOSE $SAMI_SERVER_PORT
 # vim: ft=dockerfile:
