@@ -2,7 +2,6 @@
 # NOTE: FILE GENERATED AUTOMATICALLY, DO NOT EDIT!!!
 #############################################################################
 
-
 FROM php:7.2-alpine
 
 MAINTAINER Paweł Tomulik <ptomulik@meil.pw.edu.pl>

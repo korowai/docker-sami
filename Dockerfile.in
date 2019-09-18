@@ -1,5 +1,4 @@
 @GENERATED_WARNING@
-
 FROM php:@DOCKER_FROM_TAG@
 
 MAINTAINER Paweł Tomulik <ptomulik@@meil.pw.edu.pl>
