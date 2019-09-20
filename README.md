@@ -46,7 +46,7 @@ user@pc:$ tree .
 Run it as follows
 
 ```console
-user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm korowai/sami
+user@pc:$ docker run --rm -it -v "$(pwd):/code" -p 8001:8001 korowai/sami
 ```
 
 ### Running with docker-compose
@@ -63,7 +63,7 @@ services:
       ports:
          - "8001:8001"
       volumes:
-         - ./:/home/sami/project
+         - ./:/code
 ```
 
 Then run
@@ -98,27 +98,18 @@ Several parameters can be changed via environment variables, for example we can
 change build to ``build/docs/api`` dir as follows
 
 ```console
-user@pc:$ docker run -v "$(pwd):/home/sami/project" -p 8001:8001 --rm -e SAMI_BUILD_DIR=build/docs/api korowai/sami
+user@pc:$ docker run --rm -it -v "$(pwd):/code" -p 8001:8001 -e SAMI_BUILD_DIR=build/docs/api korowai/sami
 ```
 
 ## Details
 
 ### Volume mount points exposed
 
-  - `/home/sami/project` - bind top level directory of your project here.
+  - `/code` - bind top level directory of your project here.
 
 ### Working directory
 
-  - `/home/sami/project`
-
-### User running the commands
-
-Commands are executed within container by container's internal user called
-`sami`. By default it has `UID=1000` and `GID=1000`, thus all the generated
-files will have owner with `UID=1000` and `GID=1000`.
-
-The container may be rebuilt with custom UID and GID by setting build
-arguments `SAMI_UID` and `SAMI_GID`.
+  - `/code`
 
 ### Files inside container
 
@@ -136,26 +127,25 @@ arguments `SAMI_UID` and `SAMI_GID`.
       - `sami-env` - initializes `SAMI_xxx` variables,
       - `sami-entrypoint` - provides an entry point for docker.
 
-#### In `/home/sami`
+#### In `/etc/sami`
 
   - `sami.conf.php` - default configuration file for sami.
 
 ### Build arguments & environment variables
 
 The container defines several build arguments which are copied to corresponding
-environment variables within the running container. All the arguments/variables
+environment variables within the running container. Most of the arguments/variables
 have names starting with `SAMI_` prefix. All the `sami-*` scripts, and the
 configuration file `sami.conf.php` respect these variables, so the easiest way
 to adjust the container to your needs is to set environment variables (`-e`
-flag to [docker](https://docker.com/)). There are three exceptions currently --
-`SAMI_UID`, `SAMI_GID` and `SAMI_PORT` must be defined at build time, so they
-may only be changed via docker's build arguments.
+flag to [docker](https://docker.com/)).  `KRW_CODE` and `SAMI_PORT` are
+exceptions, they must be defined at build time, so they may only be changed via
+docker's build arguments.
 
 | Argument             | Default Value            | Description                                            |
 | -------------------- | ------------------------ | ------------------------------------------------------ |
-| SAMI\_UID            | 1000                     | UID of the user running commands within the container. |
-| SAMI\_GID            | 1000                     | GID of the user running commands within the container. |
-| SAMI\_CONFIG         | /home/sami/sami.conf.php | Path to the config file for sami.                      |
+| KRW\_CODE            | /code                    | Volume mount point and default working directory.      |
+| SAMI\_CONFIG         | /etc/sami/sami.conf.php  | Path to the config file for sami.                      |
 | SAMI\_PROJECT\_TITLE | API Documentation        | Title for the generated documentation.                 |
 | SAMI\_SOURCE\_DIR    | src                      | Top-level directory with the PHP source files.         |
 | SAMI\_BUILD\_DIR     | docs/build/html/api      | Where to output the generated documentation.           |

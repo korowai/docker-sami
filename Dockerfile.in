@@ -25,20 +25,17 @@ RUN set -xe && \
   apk add --no-cache --update inotify-tools git && \
   curl -s -L -o /usr/local/bin/sami http://get.sensiolabs.org/sami.phar && \
   chmod a+x /usr/local/bin/sami && \
-  addgroup -g $SAMI_GID sami && \
-  adduser -D -G sami -u $SAMI_UID sami
+  mkdir -p "`dirname \"${SAMI_CONFIG}\"`"
 
 COPY bin/* /usr/local/bin/
+COPY etc/sami.conf.php /etc/sami/
 
-VOLUME /home/sami/project
-
-USER sami
-COPY etc/sami.conf.php /home/sami/
-
-WORKDIR /home/sami/project
+VOLUME ${KRW_CODE}
+WORKDIR ${KRW_CODE}
 
 ENTRYPOINT [ "sami-entrypoint" ]
 CMD [ "autoserve" ]
 
-EXPOSE $SAMI_SERVER_PORT
+EXPOSE ${SAMI_SERVER_PORT}
+
 # vim: ft=dockerfile:

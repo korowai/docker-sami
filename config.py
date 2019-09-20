@@ -1,6 +1,6 @@
 import itertools
 
-__version__ = '0.2.1'
+__version__ = '0.3.0'
 
 def xrepr(arg):
     if isinstance(arg, str):
@@ -17,9 +17,8 @@ def generated_warning(php, os):
 
 def sami_params(php, os):
     """Configuration parameters for sami with their default values"""
-    return {'SAMI_UID': 1000,
-            'SAMI_GID': 1000,
-            'SAMI_CONFIG': '/home/sami/sami.conf.php',
+    return {'KRW_CODE': '/code',
+            'SAMI_CONFIG': '/etc/sami/sami.conf.php',
             'SAMI_PROJECT_TITLE': 'API Documentation',
             'SAMI_SOURCE_DIR': 'src',
             'SAMI_BUILD_DIR': 'docs/build/html/api',

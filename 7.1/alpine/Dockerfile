@@ -6,9 +6,8 @@ FROM php:7.1-alpine
 
 MAINTAINER Paweł Tomulik <ptomulik@meil.pw.edu.pl>
 
-ARG SAMI_UID=1000
-ARG SAMI_GID=1000
-ARG SAMI_CONFIG='/home/sami/sami.conf.php'
+ARG KRW_CODE='/code'
+ARG SAMI_CONFIG='/etc/sami/sami.conf.php'
 ARG SAMI_PROJECT_TITLE='API Documentation'
 ARG SAMI_SOURCE_DIR='src'
 ARG SAMI_BUILD_DIR='docs/build/html/api'
@@ -32,8 +31,7 @@ LABEL org.label-schema.build-date="${BUILD_DATE}" \
       org.label-schema.schema-version="1.0"
 
 
-ENV SAMI_UID=$SAMI_UID \
-    SAMI_GID=$SAMI_GID \
+ENV KRW_CODE=$KRW_CODE \
     SAMI_CONFIG=$SAMI_CONFIG \
     SAMI_PROJECT_TITLE=$SAMI_PROJECT_TITLE \
     SAMI_SOURCE_DIR=$SAMI_SOURCE_DIR \
@@ -48,20 +46,17 @@ RUN set -xe && \
   apk add --no-cache --update inotify-tools git && \
   curl -s -L -o /usr/local/bin/sami http://get.sensiolabs.org/sami.phar && \
   chmod a+x /usr/local/bin/sami && \
-  addgroup -g $SAMI_GID sami && \
-  adduser -D -G sami -u $SAMI_UID sami
+  mkdir -p "`dirname \"${SAMI_CONFIG}\"`"
 
 COPY bin/* /usr/local/bin/
+COPY etc/sami.conf.php /etc/sami/
 
-VOLUME /home/sami/project
-
-USER sami
-COPY etc/sami.conf.php /home/sami/
-
-WORKDIR /home/sami/project
+VOLUME ${KRW_CODE}
+WORKDIR ${KRW_CODE}
 
 ENTRYPOINT [ "sami-entrypoint" ]
 CMD [ "autoserve" ]
 
-EXPOSE $SAMI_SERVER_PORT
+EXPOSE ${SAMI_SERVER_PORT}
+
 # vim: ft=dockerfile:
