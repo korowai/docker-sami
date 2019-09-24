@@ -11,7 +11,7 @@
 DEFAULT_KRW_CODE='/code'
 DEFAULT_SAMI_CONFIG='/etc/sami/sami.conf.php'
 DEFAULT_SAMI_PROJECT_TITLE='API Documentation'
-DEFAULT_SAMI_SOURCE_DIR='src'
+DEFAULT_SAMI_SOURCE_DIR='src:packages'
 DEFAULT_SAMI_BUILD_DIR='docs/build/html/api'
 DEFAULT_SAMI_CACHE_DIR='docs/cache/html/api'
 DEFAULT_SAMI_FLAGS='-v --force'

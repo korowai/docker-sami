@@ -22,7 +22,7 @@ $iterator = Finder::create()
   ->exclude("Resources")
   ->exclude("Behat")
   ->exclude("vendor")
-  ->in($srcdir);
+  ->in(explode(':', $srcdir));
 
 return new Sami($iterator, array(
   'theme'     => $theme,

@@ -9,7 +9,7 @@ function env($var, $default=false)
   return $env ? $env : $default;
 }
 
-$srcdir = env('SAMI_SOURCE_DIR', 'src');
+$srcdir = env('SAMI_SOURCE_DIR', 'src:packages');
 $builddir = env('SAMI_BUILD_DIR', 'docs/build/html/api');
 $cachedir = env('SAMI_CACHE_DIR', 'docs/cache/html/api');
 $title = env('SAMI_PROJECT_TITLE', 'API Documentation');
@@ -22,7 +22,7 @@ $iterator = Finder::create()
   ->exclude("Resources")
   ->exclude("Behat")
   ->exclude("vendor")
-  ->in($srcdir);
+  ->in(explode(':', $srcdir));
 
 return new Sami($iterator, array(
   'theme'     => $theme,
