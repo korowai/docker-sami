@@ -14,7 +14,7 @@ FORMAT="%w%f"
 
 build_once
 
-inotifywait -m -q $EVENTS --format "$FORMAT" -r "$SAMI_SOURCE_DIR" | \
+(echo "$SAMI_SOURCE_DIR" | sed -e 's/:/ /g' | xargs inotifywait -m -q $EVENTS --format "$FORMAT" -r ) | \
 while read F; do
   if echo $F | grep -qe "$SAMI_SOURCE_REGEX"; then
     build
