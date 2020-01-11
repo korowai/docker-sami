@@ -147,7 +147,7 @@ docker's build arguments.
 | KRW\_CODE            | /code                    | Volume mount point and default working directory.      |
 | SAMI\_CONFIG         | /etc/sami/sami.conf.php  | Path to the config file for sami.                      |
 | SAMI\_PROJECT\_TITLE | API Documentation        | Title for the generated documentation.                 |
-| SAMI\_SOURCE\_DIR    | src                      | Top-level directory with the PHP source files.         |
+| SAMI\_SOURCE\_DIR    | src:packages             | Colon-separated directories with the PHP source files. |
 | SAMI\_BUILD\_DIR     | docs/build/html/api      | Where to output the generated documentation.           |
 | SAMI\_CACHE\_DIR     | docs/cache/html/api      | Where to write cache files.                            |
 | SAMI\_FLAGS          | -v --force               | Commandline flags passed to sami.                      |
