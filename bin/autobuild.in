@@ -4,6 +4,8 @@
 
 set -e
 
+trap "" PIPE;
+
 . "`dirname $0`/sami-env"
 
 EVENTS="-e modify -e move -e move_self -e create -e delete"
@@ -14,6 +16,6 @@ build_once
 (echo "$SAMI_SOURCE_DIR" | sed -e 's/:/ /g' | xargs inotifywait -m -q $EVENTS --format "$FORMAT" -r ) | \
 while read F; do
   if echo $F | grep -qe "$SAMI_SOURCE_REGEX"; then
-    build
+    build || true # build may fail, but we must be permissive ...
   fi
 done
