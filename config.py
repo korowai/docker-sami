@@ -20,7 +20,7 @@ def sami_params(php, os):
     return {'KRW_CODE': '/code',
             'SAMI_CONFIG': '/etc/sami/sami.conf.php',
             'SAMI_PROJECT_TITLE': 'API Documentation',
-            'SAMI_SOURCE_DIR': 'src:packages',
+            'SAMI_SOURCE_DIR': 'src:packages/*',
             'SAMI_BUILD_DIR': 'docs/build/html/api',
             'SAMI_CACHE_DIR': 'docs/cache/html/api',
             'SAMI_FLAGS': '-v --force',

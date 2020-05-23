@@ -9,7 +9,7 @@ function env($var, $default=false)
   return $env ? $env : $default;
 }
 
-$srcdir = env('SAMI_SOURCE_DIR', 'src:packages');
+$srcdir = env('SAMI_SOURCE_DIR', 'src:packages/*');
 $builddir = env('SAMI_BUILD_DIR', 'docs/build/html/api');
 $cachedir = env('SAMI_CACHE_DIR', 'docs/cache/html/api');
 $title = env('SAMI_PROJECT_TITLE', 'API Documentation');
@@ -19,6 +19,8 @@ $iterator = Finder::create()
   ->files()
   ->name("*.php")
   ->exclude("Tests")
+  ->exclude("tests")
+  ->exclude("tests-nocov")
   ->exclude("Resources")
   ->exclude("Behat")
   ->exclude("vendor")

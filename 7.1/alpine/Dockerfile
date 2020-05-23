@@ -9,7 +9,7 @@ MAINTAINER Paweł Tomulik <ptomulik@meil.pw.edu.pl>
 ARG KRW_CODE='/code'
 ARG SAMI_CONFIG='/etc/sami/sami.conf.php'
 ARG SAMI_PROJECT_TITLE='API Documentation'
-ARG SAMI_SOURCE_DIR='src:packages'
+ARG SAMI_SOURCE_DIR='src:packages/*'
 ARG SAMI_BUILD_DIR='docs/build/html/api'
 ARG SAMI_CACHE_DIR='docs/cache/html/api'
 ARG SAMI_FLAGS='-v --force'
