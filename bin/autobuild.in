@@ -13,7 +13,7 @@ FORMAT="%w%f"
 
 build_once
 
-(echo "$SAMI_SOURCE_DIR" | sed -e 's/:/ /g' | xargs inotifywait -m -q $EVENTS --format "$FORMAT" -r ) | \
+(xargs inotifywait -m -q $EVENTS --format "$FORMAT" -r `echo "$SAMI_SOURCE_DIR" | sed -e 's/:/ /g'`) | \
 while read F; do
   if echo $F | grep -qe "$SAMI_SOURCE_REGEX"; then
     build || true # build may fail, but we must be permissive ...
